@@ -36,6 +36,13 @@ export class CategoriaFormComponent {
     let dados = {
       descricao:this.descricao
     };
+
+    if (dados.descricao == ''){
+      document.querySelector('#descricao')
+      ?.classList.add('has-error');
+      return;
+    }
+
     if (this.indice == ''){    
       this.categoria_service.salvar(dados);
     }else{
