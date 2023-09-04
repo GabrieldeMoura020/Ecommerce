@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-categoria-listar',
   templateUrl: './categoria-listar.component.html',
-  styleUrls: ['./categoria-listar.component.scss']
+  styleUrls: ['./categoria-listar.component.css']
 })
 export class CategoriaListarComponent implements OnInit {
   public dados:Array<any> = [];
