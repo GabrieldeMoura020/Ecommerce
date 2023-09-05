@@ -5,3 +5,8 @@
     border:1px solid #FF0000 !important;
 }
 
+select
+{
+    -webkit-appearance:auto !important;
+    appearance:auto !important;
+}

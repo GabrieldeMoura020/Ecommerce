@@ -8,49 +8,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./categoria-listar.component.css']
 })
 export class CategoriaListarComponent implements OnInit {
-  public dados:Array<any> = [];
+  public dados: Array<any> = []
+
   constructor(
+
     public categoria_service:CategoriaService,
-    public router:Router
-  ){}
-  
+    public router: Router
+  ) {
+
+  }
   ngOnInit(): void {
     this.categoria_service.listar()
-    .on('value',(snapshot:any) => {
+    .on('value', (snapshot: any) => {
+      
+      //Limpa a variável local com os dados
+      this.dados.splice(0, this.dados.length);
 
-      // Limpa variavel local com os dados
-      this.dados.splice(0,this.dados.length);
-
-      console.log( snapshot.val);
-      // Dados retornados do Firebase
+      //Dados retornados do Firebase
       let response = snapshot.val();
 
-      // Não setar valores caso não venha
-      // nenhum registro
+      //Não setar valores caso não venha nenhum registro
       if (response == null) return;
 
-      // Percorre a coleção de dados 
       Object.values( response )
-      .forEach(
-        (e:any,i:number) => {
-          // Adiciona os elementos no vetor
-          // de dados
+        .forEach( (e:any,i:number) => {
+
+          //Adiciona os elementos no vetor de dados
           this.dados.push({
+
             descricao: e.descricao,
+            valor: e.valor,
             indice: Object.keys(snapshot.val())[i]
+
           });
-        }
-      );
+      })
+
     });
-  }
+      }
 
-  excluir(key:string){
-    this.categoria_service.excluir(key);
+  excluir(key: string) {
+    this.categoria_service.excluir(key);  
   }
-
-  editar(key:string){
+  
+  editar(key: string) {
     this
     .router
-    .navigate(['/categoria/form/' + key]);
+    .navigate(['/categoria/formulario/' + key]);
+
   }
 }

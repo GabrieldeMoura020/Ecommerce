@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-10">
+        <h3>Formulário de forma de pagamento</h3>
+    </div>
+    <div class="col-md-2 text-end">
+        <button id="Voltar" name="Voltar" type="button" class="btn btn-success"
+            routerLink="/formapagt/listar">Voltar</button>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<br>
+
+<form>
+    <fieldset>
+        <div class="mb-3">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" class="form-control" [(ngModel)]="nome" name="nome">
+            
+            <br>
+            
+            <label for="obs">Observação</label>
+            <input type="text" id="obs" class="form-control" [(ngModel)]="obs" name="obs">
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+
+
+    </fieldset>
+</form>

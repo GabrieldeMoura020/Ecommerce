@@ -1,37 +1,31 @@
 <div style="display:flex;justify-content: right;">
-    <button 
-        class="btn btn-primary"
-        routerLink="../form"
-    >
+    <button class="btn btn-primary" routerLink="../formulario">
         <span class="bi bi-plus"></span>
         Novo
     </button>
 </div>
-<!-- Table with hoverable rows -->
+
 <table class="table table-hover">
-<thead>
-    <tr>
-    <th scope="col">#</th>
-    <th scope="col">Descrição</th>
-    <th scope="col">Editar</th>
-    <th scope="col">Excluir</th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let categoria of dados">
-        <th scope="row">1</th>
-        <td>{{ categoria.descricao }}</td>
-        <td>
-            <span 
-                class="bi bi-pencil-square"
-                (click)="editar(categoria.indice)"
-            ></span></td>
-        <td>
-            <span class="bi bi-trash" 
-                (click)="excluir(categoria.indice)"
-            ></span>
-        </td>
-    </tr>
-</tbody>
+    <thead>
+        <tr>
+            <th scope="col" width="30%">Id</th>
+            <th scope="col" width="30%">Descrição</th>
+            <th scope="col" width="30%">Valor</th>
+            <th scope="col" width="0%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let categoria of dados">
+            <th scope="row">1</th>
+            <td>{{categoria.descricao}}</td>
+            <td>{{categoria.valor}}</td>
+           
+            <td><button id="editar" name="editar" type="button" class="btn btn-primary"><i
+                        class="bi bi-pencil" (click)="editar(categoria.indice)"></i></button></td>
+            <td><button id="excluir" name="excluir" type="button" class="btn btn-danger"><i
+                        class="bi bi-trash3" (click)="excluir(categoria.indice)"></i></button></td>
+
+            
+        </tr>
+    </tbody>
 </table>
-<!-- End Table with hoverable rows -->

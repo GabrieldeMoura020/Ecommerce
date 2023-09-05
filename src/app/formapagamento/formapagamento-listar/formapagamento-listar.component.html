@@ -1,0 +1,42 @@
+<div style="display: flex; justify-content: right;">
+    <button class="btn btn-primary" routerLink="../formulario">
+        <span class="bi bi-plus"></span>
+        Novo
+    </button>
+</div>
+
+
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th scope="col" width="30%">Id</th>
+            <th scope="col" width="30%">Nome</th>
+            <th scope="col" width="30%">Obs</th>
+            
+        </tr>
+
+    </thead>
+
+    <tbody>
+        
+        <tr *ngFor="let formapagt of dados">
+            <th scope="row">1</th>
+            <td>{{formapagt.nome}}</td>
+            <td>{{formapagt.obs}}</td>
+
+            <td> 
+                <button id="editar" name="Editar" type="button" class="btn btn-primary">
+                <i class="bi bi-pencil" (click)="editar(formapagt.indice)"></i>  
+                </button>
+            </td>
+
+            <td>
+                <button id="excluir" name="Excluir" type="button" class="btn btn-danger">
+                    <i class="bi bi-trash3" (click)="excluir(formapagt.indice)"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>

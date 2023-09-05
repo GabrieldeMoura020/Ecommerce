@@ -1,22 +1,28 @@
-<div style="display:flex;justify-content: right;">
-  <button 
-      class="btn btn-success"
-      (click)="salvar()"
-  >
-      <span class="bi bi-check"></span>
-      Salvar
-  </button>
+<div class="row">
+  <div class="col-md-10">
+      <h3>Formulário de Produto</h3>
+  </div>
+  <div class="col-md-2 text-end">
+      <button id="voltar" name="voltar" type="button" class="btn btn-success"
+          routerLink="/categoria/listar">Voltar</button>
+
+  </div>
+  <div class="col-md-2">
+  </div>
 </div>
-<!-- Vertical Form -->
-<form class="row g-3">
-<div class="col-12">
-  <label for="descricao" class="form-label">Descrição</label>
-  <input 
-    type="text" 
-    class="form-control" 
-    [(ngModel)]="descricao" 
-    name="descricao"
-    id="descricao"
-  >
-</div>
-</form><!-- Vertical Form -->
+<br>
+<form>
+  <fieldset >
+      <div class="mb-3">
+          <label for="descricao">Descricao</label>
+          <input type="text" id="descricao" class="form-control" [(ngModel)]="descricao" name="descricao">       
+          
+          <br>
+          
+          <label for="valor">Valor</label>
+          <input type="text" id="valor" class="form-control" [(ngModel)]="valor" name="valor">
+      </div>
+      
+      <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+  </fieldset>
+</form>
