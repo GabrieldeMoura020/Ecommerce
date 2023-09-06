@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./categoria-form.component.css']
 })
 export class CategoriaFormComponent {
-  public indice:string    = '';
+  public valor:string    = '';
   public descricao:string = '';
   constructor(
     public categoria_service:CategoriaService,
@@ -25,7 +25,7 @@ export class CategoriaFormComponent {
         .child('/' + params.indice)
         .on('value',(snapshot:any) => {
           let dado:any    = snapshot.val();
-          this.indice     = params.indice;
+          this.valor     = params.indice;
           this.descricao  = dado.descricao;
         });
       }
@@ -43,10 +43,10 @@ export class CategoriaFormComponent {
       return;
     }
 
-    if (this.indice == ''){    
+    if (this.valor == ''){    
       this.categoria_service.salvar(dados);
     }else{
-      this.categoria_service.editar(this.indice,dados);
+      this.categoria_service.editar(this.valor,dados);
     }
     //this.descricao = '';
   }

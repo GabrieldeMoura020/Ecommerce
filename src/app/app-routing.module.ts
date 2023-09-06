@@ -4,6 +4,8 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriaListarComponent } from './categoria/categoria-listar/categoria-listar.component';
 import { CategoriaFormComponent } from './categoria/categoria-form/categoria-form.component';
+import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
+import { SubcategoriaFormComponent } from './subcategoria/subcategoria-form/subcategoria-form.component';
 
 const routes: Routes = [
   { path:'', component:HomeComponent},
@@ -17,6 +19,9 @@ const routes: Routes = [
       {path:'form', component:CategoriaFormComponent},
       {path:'form/:indice', component:CategoriaFormComponent}
     ]
+  },
+  {
+    path:'subcategoria', component:SubcategoriaFormComponent
   }
 ];
 

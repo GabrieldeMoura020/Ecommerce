@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { FormapagamentoComponent } from './formapagamento/formapagamento.component';
 import { FormapagamentoFormularioComponent } from './formapagamento/formapagamento-formulario/formapagamento-formulario.component';
 import { FormapagamentoListarComponent } from './formapagamento/formapagamento-listar/formapagamento-listar.component';
+import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
+import { SubcategoriaFormComponent } from './subcategoria/subcategoria-form/subcategoria-form.component';
 
 
 
@@ -33,6 +35,8 @@ import { FormapagamentoListarComponent } from './formapagamento/formapagamento-l
     FormapagamentoComponent,
     FormapagamentoFormularioComponent,
     FormapagamentoListarComponent,
+    SubcategoriaComponent,
+    SubcategoriaFormComponent,
   ],
   imports: [
     BrowserModule,

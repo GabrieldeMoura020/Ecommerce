@@ -5,7 +5,7 @@ import { FormapagamentoService } from '../formapagamento.service';
 @Component({
   selector: 'app-formapagamento-listar',
   templateUrl: './formapagamento-listar.component.html',
-  styleUrls: ['./formapagamento-listar.component.scss']
+  styleUrls: ['./formapagamento-listar.component.css']
 })
 export class FormapagamentoListarComponent implements OnInit{
 
