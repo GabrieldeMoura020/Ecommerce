@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
-.has-eror
-{
-    border:1px solid #FF0000 !important;
+
+.has-error{
+
+    border: 1px solid #FF0000 !important
 }
 
-select
-{
-    -webkit-appearance:auto !important;
-    appearance:auto !important;
+.campo-obrigatorio::after{
+    content: ' * ';
+    color: red
 }

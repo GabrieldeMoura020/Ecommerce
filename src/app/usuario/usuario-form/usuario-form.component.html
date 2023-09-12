@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-10">
+        <h3>Formulário de Usuário</h3>
+    </div>
+    <div class="col-md-2 text end">
+        <button id="voltar" name="voltar" type="button" class="btn btn-success"
+        routerLink="/usuario/listar">Voltar</button>
+    </div>
+    
+</div>
+<br>
+
+
+<form>
+
+    <fieldset>
+        <div class="mb-3">
+            <label for="nome" class="campo-obrigatorio">Nome</label>
+            <input type="text" id="nome" class="form-control" [(ngModel)] ="nome" name="nome">
+            
+            <br>
+
+            <label for="email" class="campo-obrigatorio">E-mail</label>
+            <input type="text" id="email" class="form-control" [(ngModel)] ="email" name="email">
+            
+            <br>
+
+            <label for="senha" class="campo-obrigatorio">Senha</label>
+            <input type="password" id="senha" class="form-control" [(ngModel)] ="senha" name="senha">
+            
+            <br>
+        
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+    </fieldset>
+</form>

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormapagamentoFormularioComponent } from './formapagamento-formulario.component';
 
-describe('FormapagtFormularioComponent', () => {
+describe('FormapagamentoFormularioComponent', () => {
   let component: FormapagamentoFormularioComponent;
   let fixture: ComponentFixture<FormapagamentoFormularioComponent>;
 

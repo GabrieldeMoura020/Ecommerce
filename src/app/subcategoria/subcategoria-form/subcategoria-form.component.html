@@ -1,31 +1,35 @@
-<div style="display:flex;justify-content: right;">
-    <button 
-      class="btn btn-success"   
-    >
-      <span class="bi bi-check"></span>
-      Salvar
-    </button>
-</div>
-
-<!-- Vertical Form -->
-<form class="row g-3">
-  <div class="col-12">
-
-    <label for="descricao" class="form-label">Categoria</label>
-    <select class="form-control">
-        <option 
-          *ngFor="let categoria of categorias"
-          [value]="categoria.indice"
-          [innerHTML]="categoria.descricao"
-        ></option>
-    </select>
-    <br/>
-    <label for="descricao" class="form-label">Descrição</label>
-    <input 
-      type="text" 
-      class="form-control"        
-      name="descricao"
-      id="descricao"
-    >
+<div class="row">
+  <div class="col-md-10">
+      <h3>Formulário de Sub-Categoria</h3>
   </div>
-</form><!-- Vertical Form -->
+  <div class="col-md-2 text-end">
+      <button id="Voltar" name="Voltar" type="button" class="btn btn-success"
+          routerLink="/subcategoria/listar">Voltar</button>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+<br>
+
+<form>
+  <fieldset>
+      <div class="mb-3">
+          <label for="descricao" class="campo-obrigatorio">Descricao</label>
+          <input type="text" id="descricao" class="form-control" [(ngModel)]="descricao" name="descricao">
+
+          <label for="categoria" class="campo-obrigatorio">Categoria</label>
+          <br>
+          <select id="categoria">
+              
+          </select>    
+      </div>
+
+      
+
+
+
+      <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+
+
+  </fieldset>
+</form>

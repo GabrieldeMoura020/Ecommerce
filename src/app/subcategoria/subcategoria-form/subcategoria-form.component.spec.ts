@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubcategoriaFormComponent } from './subcategoria-form.component';
+import { SubcategoriaFormularioComponent } from './subcategoria-form.component';
 
 describe('SubcategoriaFormComponent', () => {
-  let component: SubcategoriaFormComponent;
-  let fixture: ComponentFixture<SubcategoriaFormComponent>;
+  let component: SubcategoriaFormularioComponent;
+  let fixture: ComponentFixture<SubcategoriaFormularioComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SubcategoriaFormComponent]
+      declarations: [SubcategoriaFormularioComponent]
     });
-    fixture = TestBed.createComponent(SubcategoriaFormComponent);
+    fixture = TestBed.createComponent(SubcategoriaFormularioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

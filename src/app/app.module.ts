@@ -18,8 +18,14 @@ import { FormapagamentoComponent } from './formapagamento/formapagamento.compone
 import { FormapagamentoFormularioComponent } from './formapagamento/formapagamento-formulario/formapagamento-formulario.component';
 import { FormapagamentoListarComponent } from './formapagamento/formapagamento-listar/formapagamento-listar.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
-import { SubcategoriaFormComponent } from './subcategoria/subcategoria-form/subcategoria-form.component';
-
+import { SubcategoriaFormularioComponent } from './subcategoria/subcategoria-form/subcategoria-form.component';
+import { SubcategoriaListarComponent } from './subcategoria/subcategoria-listar/subcategoria-listar.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioFormularioComponent } from './usuario/usuario-form/usuario-form.component';
+import { UsuarioListarComponent } from './usuario/usuario-listar/usuario-listar.component';
+import { ProdutoComponent } from './produto/produto.component';
+import { ProdutoListarComponent } from './produto/produto-listar/produto-listar.component';
+import { ProdutoFormComponent } from './produto/produto-formulario/produto-formulario.component';
 
 
 @NgModule({
@@ -36,7 +42,14 @@ import { SubcategoriaFormComponent } from './subcategoria/subcategoria-form/subc
     FormapagamentoFormularioComponent,
     FormapagamentoListarComponent,
     SubcategoriaComponent,
-    SubcategoriaFormComponent,
+    SubcategoriaFormularioComponent,
+    UsuarioComponent,
+    UsuarioFormularioComponent,
+    UsuarioListarComponent,
+    SubcategoriaListarComponent,
+    ProdutoComponent,
+    ProdutoListarComponent,
+    ProdutoFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import { FirebaseService } from '../firebase.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService {
+export class ProdutoService {
 
   constructor(
     public firebase_service:FirebaseService
@@ -13,7 +13,7 @@ export class CategoriaService {
   ref(){
     return this.firebase_service
     .ref()
-    .child('/categoria');
+    .child('/produto');
   }
 
   salvar(dados:any){
@@ -43,11 +43,11 @@ export class CategoriaService {
     await this.ref().orderByKey()
     .equalTo(indice)
     .once('value')
-    .then( function(snapshot){
-      if (snapshot.exists()){
-        dado = Object.values(snapshot.val())[0];
+    .then( function(snapshot) {
+      if (snapshot.exists()) {
+          dado = Object.values(snapshot.val())[0];
       }
-    })
+    });
     return dado;
   }
 }
