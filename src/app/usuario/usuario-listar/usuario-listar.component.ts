@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-usuario-listar',
   templateUrl: './usuario-listar.component.html',
-  styleUrls: ['./usuario-listar.component.scss']
+  styleUrls: ['./usuario-listar.component.css']
 })
 export class UsuarioListarComponent implements OnInit {
 

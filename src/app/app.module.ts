@@ -26,6 +26,9 @@ import { UsuarioListarComponent } from './usuario/usuario-listar/usuario-listar.
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListarComponent } from './produto/produto-listar/produto-listar.component';
 import { ProdutoFormComponent } from './produto/produto-formulario/produto-formulario.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { ClienteFormComponent } from './cliente/cliente-form/cliente-form.component';
+import { ClienteListarComponent } from './cliente/cliente-listar/cliente-listar.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { ProdutoFormComponent } from './produto/produto-formulario/produto-formu
     ProdutoComponent,
     ProdutoListarComponent,
     ProdutoFormComponent,
+    ClienteComponent,
+    ClienteFormComponent,
+    ClienteListarComponent,
   ],
   imports: [
     BrowserModule,
