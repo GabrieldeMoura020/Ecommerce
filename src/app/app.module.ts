@@ -29,6 +29,9 @@ import { ProdutoFormComponent } from './produto/produto-formulario/produto-formu
 import { ClienteComponent } from './cliente/cliente.component';
 import { ClienteFormComponent } from './cliente/cliente-form/cliente-form.component';
 import { ClienteListarComponent } from './cliente/cliente-listar/cliente-listar.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { PedidoFormComponent } from './pedido/pedido-form/pedido-form.component';
+import { PedidoListarComponent } from './pedido/pedido-listar/pedido-listar.component';
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import { ClienteListarComponent } from './cliente/cliente-listar/cliente-listar.
     ClienteComponent,
     ClienteFormComponent,
     ClienteListarComponent,
+    PedidoComponent,
+    PedidoFormComponent,
+    PedidoListarComponent,
   ],
   imports: [
     BrowserModule,

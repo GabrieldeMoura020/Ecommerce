@@ -6,9 +6,22 @@
       <li class="nav-item">
           <a class="nav-link " href="/home">
               <i class="bi bi-grid"></i>
-              <span>Home</span>
+              <span>Dashboard</span>
           </a>
       </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-journal-text"></i><span>Administração</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="usuario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="/usuario">
+                    <i class="bi bi-circle"></i><span>Usuários</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 
       <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#mercadoria-nav" data-bs-toggle="collapse" href="#">
@@ -49,18 +62,7 @@
           </ul>
       </li><!-- End Forms Nav -->
 
-      <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-journal-text"></i><span>Controle de usuários</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="usuario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-              <li>
-                  <a href="/usuario">
-                      <i class="bi bi-circle"></i><span>Usuários</span>
-                  </a>
-              </li>
-          </ul>
-      </li><!-- End Forms Nav -->
+      <!-- End Forms Nav -->
 
 
       

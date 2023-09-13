@@ -1,1 +1,47 @@
-<p>cliente-listar works!</p>
+<div style="display: flex; justify-content: right;">
+    <button class="btn btn-primary" routerLink=".../formulario">
+        <span class="bi bi-plus"></span>
+        Novo
+    </button>
+    </div>
+
+    <table class="table table-hover">
+
+        <thead>
+            <tr>
+                <th scope="col" width="20%">Id</th>
+                <th scope="col" width="20%">Nome</th>
+                <th scope="col" width="20%">CPF</th>
+                <th scope="col" width="20%">Data de Nascimento</th>
+                <th scope="col" width="20%">Celular</th>
+                <th scope="col" width="20%">E-mail</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor= "let cliente of dados">
+
+                <th scope="row">1</th>
+                <td>{{cliente.nome}}</td>
+                <td>{{cliente.cpf}}</td>
+                <td>{{cliente.dtnas}}</td>
+                <td>{{cliente.celular}}</td>
+                <td>{{cliente.email}}</td>
+
+                <td>
+                    <button id="editar" name="editar" type="button" class="btn btn-primary">
+                        <i class="bi bi-pencil" (click)="editar(cliente.indice)"></i>
+                    </button>
+                </td>
+
+                <td>
+                    <button id="excluir" name="excluir" type="button" class="btn btn-danger">
+                        <i class="bi bi-trash3" (click)="excluir(cliente.indice)"></i>
+                    </button>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>

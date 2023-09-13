@@ -72,6 +72,7 @@ const routes: Routes = [
       {path:'form/:indice', component:ProdutoFormComponent}
     ]
   }
+
 ];
 
 @NgModule({
