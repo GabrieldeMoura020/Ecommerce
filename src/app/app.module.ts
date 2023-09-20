@@ -32,6 +32,13 @@ import { ClienteListarComponent } from './cliente/cliente-listar/cliente-listar.
 import { PedidoComponent } from './pedido/pedido.component';
 import { PedidoFormComponent } from './pedido/pedido-form/pedido-form.component';
 import { PedidoListarComponent } from './pedido/pedido-listar/pedido-listar.component';
+import { FornecedorComponent } from './fornecedor/fornecedor.component';
+import { FornecedorFormComponent } from './fornecedor/fornecedor-form/fornecedor-form.component';
+import { FornecedorListarComponent } from './fornecedor/fornecedor-listar/fornecedor-listar.component';
+import { EstadoComponent } from './estado/estado.component';
+import { EstadoFormComponent } from './estado/estado-form/estado-form.component';
+import { EstadoListaComponent } from './estado/estado-lista/estado-lista.component';
+import { EstadoListarComponent } from './estado/estado-listar/estado-listar.component';
 
 
 @NgModule({
@@ -62,6 +69,13 @@ import { PedidoListarComponent } from './pedido/pedido-listar/pedido-listar.comp
     PedidoComponent,
     PedidoFormComponent,
     PedidoListarComponent,
+    FornecedorComponent,
+    FornecedorFormComponent,
+    FornecedorListarComponent,
+    EstadoComponent,
+    EstadoFormComponent,
+    EstadoListaComponent,
+    EstadoListarComponent,
   ],
   imports: [
     BrowserModule,

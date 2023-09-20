@@ -1,0 +1,65 @@
+<div style="row">
+    <div class="col-md-10">
+        <h3>Formulário de Fornecedor</h3>
+    </div>
+    <div class="col-md-2 text end">
+        <button id="voltar" name="voltar" type="button" class="btn btn-success"
+        routerLink="/fornecedor/listar">Voltar</button>
+    </div>
+</div>
+
+<br>
+
+<form class="row g-3">
+    <fieldset>
+        <div class="mb-3">
+            <label for="nomefant" class="campo-obrigatorio">Nome Fantasia</label>
+            <input type="text" id="nomefant" class="form-control" [(ngModel)] ="nomefant" name="nome"/>
+
+            <label for="logradouro" class="campo-obrigatorio">Logradouro (AV, Rua, Beco)</label>
+            <input type="text" id="logradouro" class="form-control" [(ngModel)] ="logradouro" name="logradouro"/>
+
+            <br>
+
+            <label for="razaosocial" class="campo-obrigatorio">Razão Social</label>
+            <input type="text" id="razaosocial" class="form-control" [(ngModel)] ="razaosocial" name="razaosocial"/>
+
+            <label for="complemento" class="campo-obrigatorio">Complemento</label>
+            <input type="text" id="complemento" class="form-control" [(ngModel)] ="complemento" name="complemento"/>
+
+            <br>
+
+            <label for="cnpj" class="campo-obrigatorio">CNPJ</label>
+            <input type="text" id="cnpj" class="form-control" [(ngModel)] ="cnpj" name="cnpj"/>
+
+            <label for="bairo" class="campo-obrigatorio">Nome Fantasia</label>
+            <input type="text" id="bairro" class="form-control" [(ngModel)] ="bairro" name="bairro"/>
+
+            <br>
+
+            <label for="contato" class="campo-obrigatorio">Contato</label>
+            <input type="text" id="contato" class="form-control" [(ngModel)] ="contato" name="contato"/>
+
+            <label for="cidade" class="campo-obrigatorio">Cidade</label>
+            <input type="text" id="cidade" class="form-control" [(ngModel)] ="cidade" name="cidade"/>
+
+            <br>
+
+            <label for="email" class="campo-obrigatorio">E-Mail</label>
+            <input type="text" id="email" class="form-control" [(ngModel)] ="email" name="email"/>
+
+            <label for="estado" class="campo-obrigatorio">Estado</label>
+            <select [disabled]="is_disabilitado" class="form-control form-select" [(ngModel)]= "estado" id="estado" name="estado">
+                <option *ngFor= "let estado of estado" [value]="estado.indice" 
+                [innerHTML]= "estado.descricao"></option>
+            </select>
+
+
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+
+    </fieldset>
+    
+</form>
