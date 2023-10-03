@@ -12,6 +12,7 @@ export class UsuarioFormularioComponent {
   public indice: string='';
   public nome: string='';
   public email: string='';
+  public login: string='';
   public senha: string='';
 
   
@@ -41,84 +42,92 @@ export class UsuarioFormularioComponent {
 
   salvar() {
 
-    let validacoes_campos = this.validar_campos(); //Valida todos os campos do formulário
+//    let validacoes_campos = this.validar_campos(); //Valida todos os campos do formulário
+
+    if(this.nome == ''){
+      document.querySelector('#nome')
+      ?.classList.add('has-error');
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append('nome',this.nome)
+    fd.append('email',this.email)
+    fd.append('login',this.login)
+    fd.append('senha',this.senha)
 
     if (this.indice == "") {
-     
+  
+      this.usuario_service.salvar(fd).subscribe();
       
-      if(validacoes_campos.get("nome_valido") == true && validacoes_campos.get("email_valido") == true && validacoes_campos.get("senha_valido") == true) {
-        this.usuario_service.salvar({
-          nome: this.nome,
-          email: this.email,
-          senha: this.senha
-        })
+//      if(validacoes_campos.get("nome_valido") == true && validacoes_campos.get("email_valido") == true && validacoes_campos.get("senha_valido") == true) {
+//        this.usuario_service.salvar({
+//          nome: this.nome,
+//          email: this.email,
+//          senha: this.senha
+//        })
 
-        alert("Usuário cadastrado");
+//        alert("Usuário cadastrado");
 
-        this.nome = "";
-        this.email = "";
-        this.senha = "";
+//        this.nome = "";
+//        this.email = "";
+//        this.senha = "";
       }
-
-  }
 
   else {
 
-    if(validacoes_campos.get("nome_valido") == true && validacoes_campos.get("email_valido") == true && validacoes_campos.get("senha_valido") == true) {
-      this.usuario_service.editar(this.indice, {nome: this.nome, email: this.email, senha: this.senha});
+    this.usuario_service.editar(this.indice, fd);
 
-      alert("Alterações salvas");
+//    if(validacoes_campos.get("nome_valido") == true && validacoes_campos.get("email_valido") == true && validacoes_campos.get("senha_valido") == true) {
+//      this.usuario_service.editar(this.indice, {nome: this.nome, email: this.email, senha: this.senha});
+
+//      alert("Alterações salvas");
     }
   }
 
   }
 
-  validar_campos() {
+///  validar_campos() {
 
-    let validacoes = new Map();
+//    let validacoes = new Map();
 
-    if(this.nome == "") {
-      document.querySelector("#nome")?.classList.add('has-error');
-      validacoes.set("nome_valido", false);
-    }
+//    if(this.nome == "") {
+//      document.querySelector("#nome")?.classList.add('has-error');
+//      validacoes.set("nome_valido", false);
+//    }
 
-    else {
-      document.querySelector("#nome")?.classList.remove('has-error');
-      validacoes.set("nome_valido", true);
+//    else {
+//      document.querySelector("#nome")?.classList.remove('has-error');
+//      validacoes.set("nome_valido", true);
 
-    }
-
-
-    if(this.email == "") {
-      document.querySelector("#email")?.classList.add('has-error');
-      validacoes.set("email_valido", false);
-    }
+//    }
 
 
-    else {
-      document.querySelector("#email")?.classList.remove('has-error');
-      validacoes.set("email_valido", true);
-
-    }
-
-
-    if (this.senha == "") {
-      document.querySelector("#senha")?.classList.add('has-error');
-      validacoes.set("senha_valido", false);
-
-    }
-
-    else {
-      document.querySelector("#senha")?.classList.remove('has-error');
-      validacoes.set("senha_valido", true);
-
-    }
+//    if(this.email == "") {
+//      document.querySelector("#email")?.classList.add('has-error');
+//      validacoes.set("email_valido", false);
+//    }
 
 
-    return validacoes;
-  }
+//    else {
+//      document.querySelector("#email")?.classList.remove('has-error');
+//      validacoes.set("email_valido", true);
+
+//    }
 
 
-  
+//    if (this.senha == "") {
+//      document.querySelector("#senha")?.classList.add('has-error');
+//      validacoes.set("senha_valido", false);
 
-}
+//    }
+
+//    else {
+//      document.querySelector("#senha")?.classList.remove('has-error');
+//      validacoes.set("senha_valido", true);
+
+//    }
+
+
+//    return validacoes;
+//  }

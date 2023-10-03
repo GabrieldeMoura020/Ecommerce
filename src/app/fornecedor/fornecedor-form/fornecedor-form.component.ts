@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { EstadoService } from 'src/app/estado/estado.service';
 import { FornecedorService } from '../fornecedor.service';
 
 @Component({
@@ -32,29 +33,29 @@ export class FornecedorFormComponent {
       (params:any) => {
         if (params.indice == undefined) return;
 
-        this.estado_service.ref()
-        .child('/' + params.indice)
-        .on('value',(snapshot:any) => {
+       this.estado_service.ref()
+       .child('/' + params.indice)
+       .on('value',(snapshot:any) => {
           let dado:any = snapshot.val();
           this.indice = params.indice;
-          this.nomeestado = dado.nomeestado;
+          this.razaosocial = dado.razaosocial;
         });
       });
   }
 
   salvar(){
     let dados = {
-      nomeestado:this.nomeestado
+      razaosocial:this.razaosocial
     };
 
-    if(dados.nomeestado == ''){
+    if(dados.razaosocial == ''){
       document.querySelector('#nomeestado')
       ?.classList.add('has-error');
       return;
     }
 
     if(this.indice == ''){
-      this.estado_service.salvar(dados);
+      //this.estado_service.salvar(dados);
     } else {
       this.estado_service.editar(this.indice, dados);
     }
