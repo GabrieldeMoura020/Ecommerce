@@ -10,10 +10,15 @@ export class RequisicaoService {
     public http: HttpClient
   ) { }
 
+  get(){
+    this.http.get("/").subscribe();
+  }
+
   post(formData:any, rota:string = ''){
     const httpOptions = {
       headers: new HttpHeaders({
-        'Access-Control-Allow-Origin' : '*'
+        'Access-Control-Allow-Origin' : '*',
+        'Content-Type': 'application/json'
       })
     };
     return this.http.post('/' + rota,formData,httpOptions);

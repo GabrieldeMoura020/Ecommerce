@@ -15,7 +15,7 @@ export class UsuarioService {
     return  this.firebase_service.ref().child('/usuario');
   }
 
-  salvar(fd:FormData){
+  salvar(fd:any){
     return this.requisicao_service.post(fd, 'usuario');
   }
 
@@ -27,8 +27,12 @@ export class UsuarioService {
     return this.ref().child("/" + indice).remove().then();
   }
 
-  editar(indice:string, dados:any) {
+  editar(indice:string, fd:any) {
 
-    this.ref().child('/' + indice).update(dados).then();
+    this.ref().child('/' + indice).update(fd).then();
+  }
+
+  get(){
+    this.requisicao_service.get();
   }
 }
