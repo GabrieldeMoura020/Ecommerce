@@ -20,11 +20,11 @@ export class UsuarioService {
   }
 
   listar() {
-    return this.ref();
+    return this.requisicao_service.get('/usuario/listar');
   }
 
-  excluir(indice: string){
-    return this.ref().child("/" + indice).remove().then();
+  excluir(_id: number){
+    return this.requisicao_service.del("/usuario" + _id);
   }
 
   editar(indice:string, fd:any) {

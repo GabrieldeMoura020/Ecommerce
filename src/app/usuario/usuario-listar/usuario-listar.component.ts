@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './usuario-listar.component.html',
   styleUrls: ['./usuario-listar.component.css']
 })
-export class UsuarioListarComponent implements OnInit {
+export class UsuarioListarComponent {
 
   public dados: Array<any> = [];
 
@@ -15,42 +15,53 @@ export class UsuarioListarComponent implements OnInit {
     public usuario_service: UsuarioService,
     public router: Router
   ) {}
-  
+
+  listar(){
+    this.usuario_service.listar().subscribe((_dados:any) => {
+      this.dados = _dados;
+    }
+    );
+  }
+
   ngOnInit(): void {
+
+    this.listar();
     
-    this.usuario_service.listar()
-    .on('value', (snapshot: any) => {
+//    this.usuario_service.listar()
+//    .on('value', (snapshot: any) => {
 
       //Limpa a variável local com os dados
-      this.dados.splice(0, this.dados.length);
+//      this.dados.splice(0, this.dados.length);
 
       //Dados retornados do Firebase
-      let response = snapshot.val();
+//      let response = snapshot.val();
 
       //Não setar valores caso não venha nenhum registro
-      if(response==null) return;
+//      if(response==null) return;
 
 
-      Object.values(response).forEach((e: any, i: number) => {
+//      Object.values(response).forEach((e: any, i: number) => {
 
-        this.dados.push({
+//        this.dados.push({
 
-          nome: e.nome,
-          email: e.email,
-          senha: e.senha,
-          indice: Object.keys(snapshot.val())[i]
+//          nome: e.nome,
+//          email: e.email,
+//          senha: e.senha,
+//          indice: Object.keys(snapshot.val())[i]
 
-        })
+//        })
 
 
 
-      })
-    })
+//      })
+//    })
   }
 
 
-  excluir(key: string) {
-    this.usuario_service.excluir(key)
+  excluir(_id: number) {
+    return this.usuario_service.excluir(_id).subscribe(() =>{
+      this.listar();
+    });
   }
 
   editar(key: string) {
