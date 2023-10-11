@@ -16,6 +16,10 @@ import { UsuarioListarComponent } from './usuario/usuario-listar/usuario-listar.
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListarComponent } from './produto/produto-listar/produto-listar.component';
 import { ProdutoFormComponent } from './produto/produto-formulario/produto-formulario.component';
+import { FornecedorComponent } from './fornecedor/fornecedor.component';
+import { FornecedorListarComponent } from './fornecedor/fornecedor-listar/fornecedor-listar.component';
+import { FornecedorFormComponent } from './fornecedor/fornecedor-form/fornecedor-form.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -59,6 +63,17 @@ const routes: Routes = [
       {path: 'listar', component: UsuarioListarComponent},
       {path: 'formulario', component: UsuarioFormularioComponent},
       {path: 'formulario/:indice', component: UsuarioFormularioComponent}
+    ]
+    
+  },
+  {
+    path: 'fornecedor',
+    component: FornecedorComponent,
+    children: [
+      {path: '', redirectTo: 'listar', pathMatch: 'full'},
+      {path: 'listar', component: FornecedorListarComponent},
+      {path: 'form', component: FornecedorFormComponent},
+      {path: 'form/:indice', component: FornecedorFormComponent}
     ]
     
   },

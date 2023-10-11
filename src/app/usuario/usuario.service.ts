@@ -27,9 +27,13 @@ export class UsuarioService {
     return this.requisicao_service.del("/usuario" + _id);
   }
 
-  editar(indice:string, fd:any) {
+  editar(fd:any, id:number) {
 
-    this.ref().child('/' + indice).update(fd).then();
+    return this.requisicao_service.put(fd, 'usuario/' + id);
+  }
+
+  load(id:number){
+    return this.requisicao_service.get('/usuario/load' + id);
   }
 
   get(){
