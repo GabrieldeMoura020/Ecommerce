@@ -38,7 +38,8 @@ import { FornecedorListarComponent } from './fornecedor/fornecedor-listar/fornec
 import { EstadoComponent } from './estado/estado.component';
 import { EstadoFormComponent } from './estado/estado-form/estado-form.component';
 import { EstadoListarComponent } from './estado/estado-listar/estado-listar.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { AutenticacaoComponent } from './autenticacao/autenticacao.component'
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { HttpClientModule } from '@angular/common/http'
     EstadoComponent,
     EstadoFormComponent,
     EstadoListarComponent,
+    AutenticacaoComponent,
   ],
 
   imports: [

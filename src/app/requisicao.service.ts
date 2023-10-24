@@ -6,11 +6,44 @@ import { Injectable } from '@angular/core';
 })
 export class RequisicaoService {
 
+ 
   constructor(
-    public http: HttpClient
+    public http:HttpClient
   ) { }
+  
+  get(_rota:string = '/',_params:any = {}){
+    return this.http.get(
+      "http://localhost:8080" + _rota,
+      {params:_params}
+    );
+  }
 
-  post(formData:any, rota:string = ''){
+  post(formData:any,rota:string = ''){
+    /*
+    const httpOptions = {      
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin' : '*',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, X-CSRF-Token',
+        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE',
+        'Access-Control-Allow-Credenciais': 'true'
+      })
+    };
+    */
+    const httpOptions = {      
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin' : '*',
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post('http://localhost:8080' + rota,formData,httpOptions);
+  }
+
+  del(_rota:string){
+    return this.http.delete("http://localhost:8080" + _rota);
+  }
+
+  put(formData:any,rota:string = ''){
     const httpOptions = {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin' : '*',
@@ -18,26 +51,6 @@ export class RequisicaoService {
       })
     };
 
-      return this.http.post('http://localhost:8080/' + rota,formData,httpOptions);
+    return this.http.put('http://localhost:8080' + rota,formData,httpOptions);
   }
-
-  get(_rota:string = '/'){
-    return this.http.get("http://localhost:8080" + _rota);
-  }
-
-  del(_rota:string){
-    return this.http.delete("http://localhost:8080" + _rota);
-  } 
-
-    put(formData:any, rota:string = ''){
-      consthttpOptions = {
-        headers: new HttpHeaders({
-          'Access-Control-Allow-Origin' : '*',
-          'Content-Type': 'application/json'
-        })
-      };
-
-        return this.put('http://localhost:8080' + rota,formData,httpOptions);
-    }
-
 }

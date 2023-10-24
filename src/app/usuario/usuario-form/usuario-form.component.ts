@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UsuarioFormularioComponent {
 
-  public indice: string='';
+  public id: number= 0;
   public nome: string='';
   public email: string='';
   public login: string='';
@@ -27,9 +27,9 @@ export class UsuarioFormularioComponent {
 
      (params: any) => {
 
-      if(params.indice == undefined) return;
+      if(params.id == undefined) return;
 
-      this.usuario_service.ref().child('/' + params.indice).on('value', (snapshot: any) => {
+      this.usuario_service.ref().child('/' + params.id).on('value', (snapshot: any) => {
 
 
       })
@@ -46,7 +46,7 @@ export class UsuarioFormularioComponent {
 
     let dados = {
 
-      indice:this.indice,
+      id:this.id,
       nome:this.nome,
       email:this.email,
       senha:this.senha
@@ -59,7 +59,7 @@ export class UsuarioFormularioComponent {
     fd.append('login',this.login)
     fd.append('senha',this.senha)
 
-    if (this.indice == "") {
+    if (this.id == 0) {
   
       this.usuario_service.salvar(dados).subscribe();
       
@@ -67,7 +67,8 @@ export class UsuarioFormularioComponent {
 
   else {
 
-    this.usuario_service.editar(this.indice, dados);
+    dados.id = this.id;
+    this.usuario_service.editar(dados, this.id).subscribe();
 
 
     }
