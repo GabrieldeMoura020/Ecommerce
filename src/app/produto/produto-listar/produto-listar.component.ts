@@ -1,41 +1,45 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoriaService } from 'src/app/categoria/categoria.service';
+import { SubcategoriaService } from 'src/app/subcategoria/subcategoria.service';
+import { ProdutoService } from '../produto.service';
 
 @Component({
   selector: 'app-produto-listar',
   templateUrl: './produto-listar.component.html',
   styleUrls: ['./produto-listar.component.css']
 })
+
 export class ProdutoListarComponent {
   public dados:Array<any> = [];
+
   constructor(
-    public categoria_service:CategoriaService,
+    public produto_service:ProdutoService,
+    public categoria_service: CategoriaService,
+    public subcategoria_service: SubcategoriaService,
     public router:Router
   ){}
 
   ngOnInit(): void {
-    this.categoria_service.listar()
+    this.produto_service.listar()
     .on('value',(snapshot:any) => {
 
-      // Limpa variavel local com os dados
       this.dados.splice(0,this.dados.length);
-
-      // Dados retornados do Firebase
       let response = snapshot.val();
-
-      // Não setar valores caso não venha
-      // nenhum registro
       if (response == null) return;
 
-      // Percorre a coleção de dados 
       Object.values( response )
       .forEach(
-        (e:any,i:number) => {
-          // Adiciona os elementos no vetor
-          // de dados
+       async (e:any,i:number) => {
+
+        let categoria: any = await this.getCategoria(e.categoria)
+        let subcategoria: any = await this.getSubcategoria(e.subcategoria)
+
           this.dados.push({
-            descricao: e.descricao,
+            nome: e.nome,
+            preco: e.preco,
+            categoria: categoria.descricao,
+            subcategoria: subcategoria.descricao,
             indice: Object.keys(snapshot.val())[i]
           });
         }
@@ -43,8 +47,20 @@ export class ProdutoListarComponent {
     });
   }
 
+  async getCategoria(key:string){
+    let dado: any
+    dado = await this.categoria_service.get(key);
+    return dado;
+  }
+
+  async getSubcategoria(key:string){
+    let dado: any
+    dado = await this.subcategoria_service.get(key);
+    return dado;
+  }
+
   excluir(key:string){
-    this.categoria_service.excluir(key);
+    this.produto_service.excluir(key);
   }
 
   editar(key:string){

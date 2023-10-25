@@ -1,131 +1,112 @@
 import { Component } from '@angular/core';
+import { ProdutoService } from '../produto.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriaService } from 'src/app/categoria/categoria.service';
 import { SubcategoriaService } from 'src/app/subcategoria/subcategoria.service';
+
 
 @Component({
   selector: 'app-produto-form',
   templateUrl: './produto-formulario.component.html',
   styleUrls: ['./produto-formulario.component.css']
 })
+
 export class ProdutoFormComponent {
-  public indice:string    = '';
-  public nome:string = '';
-  public preco:number = 0;
-  public descricao:string = '';
-  public categoria:string = '';
-  public subcategoria:string = '';
-  public categorias:Array<any> = [];
-  public subcategorias:Array<any> = [];
-  public is_desabilidado:boolean = true;
-  constructor(
-    public categoria_service:CategoriaService,
-    public subcategoria_service:SubcategoriaService,
-    public activated_route:ActivatedRoute
-  ){
-    this.listarCategoria();
-    this.activated_route.params
-    .subscribe(
-      (params:any) => {
-        // Caso seja um registro novo
-        // interronper o método
-        if (params.indice == undefined) return;
-
-        this.categoria_service.ref()
-        .child('/' + params.indice)
-        .on('value',(snapshot:any) => {
-          let dado:any    = snapshot.val();
-          this.indice     = params.indice;
-          this.descricao  = dado.descricao;
-        });
-      }
-    );
-  }
+	
+  public categorias: Array<any> = [];
+	public subcategorias: Array<any> = [];
   
-  salvar(){
-    let dados = {
-      descricao:this.descricao
-    };
+  public indice: string = '';
+	public nome: string   = '';
+	public preco: string  = '';
+	public descricao: string = '';
+	public categoria: string = '';
+	public subcategoria: string = '';
+	public is_desabilidado: boolean = true;
 
-    if (dados.descricao == ''){
-      document.querySelector('#descricao')
-      ?.classList.add('has-error');
-      return;
+  constructor(
+    public produto_service: ProdutoService,
+    public activated_route:ActivatedRoute,
+    public categoria_service:CategoriaService,
+    public subcategoria_service:SubcategoriaService
+  ) {
+
+		this.listarCategoria();
+    
+		this.activated_route.params.subscribe((params: any) => {
+
+					if (params.indice == undefined) return;
+
+					this.produto_service.ref().child('/' + params.indice).on('value', (snapshot: any) => {
+							let dados: any       = snapshot.val();
+              this.indice          = params.indice;
+							this.nome            = dados.nome;
+							this.preco           = dados.preco;
+							this.descricao       = dados.descricao;
+							this.categoria       = dados.categoria;
+              this.listarSubcategoria(dados.categoria);
+              this.subcategoria    = dados.subcategoria;
+						});
+
+            this.is_desabilidado = false;
+				});
+	}
+
+	salvar() {
+    if(this.validarCampos()) {
+      let dados = {
+        nome: this.nome,
+        preco: this.preco,
+        descricao: this.descricao,
+        categoria: this.categoria,
+        subcategoria: this.subcategoria
+      };  
     }
+		
+		if (this.indice == '') {
+			document.querySelector('#descricao')
+				?.classList.add('has-error');
+			return;
+		}
 
-    if (this.indice == ''){    
-      this.categoria_service.salvar(dados);
-    }else{
-      this.categoria_service.editar(this.indice,dados);
-    }
-    //this.descricao = '';
-  }
+		if (this.id == 0) {
+			this.produto_service.salvar(dados).subscribe();
+			this.produto_service.listar();
+		} else {
+			this.produto_service.editar(dados, this.id).subscribe();
+		}
+	}
 
-  listarCategoria(){
-    this.categoria_service.listar()
-    .once('value',(snapshot:any) => {
+	listarSubcategoria(_categoria: string) {
 
-      // Dados retornados do Firebase
-      let response = snapshot.val();
+		this.subcategorias.splice(0, this.subcategorias.length);
 
-      // Não setar valores caso não venha
-      // nenhum registro
-      if (response == null) return;
+		this.subcategoria_service.listar()
+			.subscribe((snapshot: any) => {
 
-      Object.values( response )
-      .forEach(
-        (e:any,i:number) => {
-          // Adiciona os elementos no vetor
-          // de dados
-          this.categorias.push({
-            descricao: e.descricao,
-            indice: Object.keys(snapshot.val())[i]
-          });
-        }
-      );
-      
-    });    
-  }
+				let response = snapshot.val();
 
-  listarSubcategoria(_categoria:string){
+				if (response == null) return;
 
-    // Limpa a lista de subcategorias
-    this.subcategorias.splice(0,this.subcategorias.length);
+				Object.values(response)
+					.forEach(
+						(e: any, i: number) => {
+							let _indice = Object.keys(snapshot.val())[i];
+							if (_categoria == e.categoria) {
+								this.subcategorias.push({
+									descricao: e.descricao,
+									categoria: e.categoria,
+									id: _indice
+								});
+							}
+						}
+					);
 
-    this.subcategoria_service.listar()
-    .on('value',(snapshot:any) => {
-
-      // Dados retornados do Firebase
-      let response = snapshot.val();
-
-      // Não setar valores caso não venha
-      // nenhum registro
-      if (response == null) return;
-      
-      Object.values( response )
-      .forEach(
-        (e:any,i:number) => {
-          
-          // Indice da subcategoria
-          let _indice = Object.keys(snapshot.val())[i];
-
-          // Adiciona os elementos no vetor
-          // de dados
-          if (_categoria == e.categoria){            
-            this.subcategorias.push({
-              descricao: e.descricao,
-              categoria: e.categoria,
-              indice: _indice
-            });
-          }
-        }
-      );
-
-      if (this.subcategorias.length > 0){
-        this.is_desabilidado = false;
-      }else{
-        this.is_desabilidado = true;
-      }
-    });    
-  }
+				if (this.subcategorias.length > 0) {
+					this.is_desabilidado = false;
+				} else {
+					this.is_desabilidado = true;
+				}
+			});
+	}
 }

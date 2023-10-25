@@ -1,53 +1,34 @@
 import { Injectable } from '@angular/core';
-import { FirebaseService } from '../firebase.service';
+import { RequisicaoService } from '../requisicao.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
 
+  public url: string = '/categoria/'; 
+
   constructor(
-    public firebase_service:FirebaseService
+    public requisicao_service:RequisicaoService
   ) { }
 
-  ref(){
-    return this.firebase_service
-    .ref()
-    .child('/categoria');
+  salvar(fd:any){
+    return this.requisicao_service.post(fd,this.url + 'salvar');
   }
 
-  salvar(dados:any){
-    this.ref().push(dados).then();
+  editar(fd:any,id:number){
+    return this.requisicao_service.put(fd,this.url + 'editar/' + id);
+  }
+
+  load(id:number){
+    return this.requisicao_service.get(this.url +'load/' + id);
   }
 
   listar(){
-    return this.ref();
+    return this.requisicao_service.get(this.url + 'listar');
   }
 
-  excluir(indice:string){
-    this
-    .ref()
-    .child('/' + indice)
-    .remove()
-    .then();
-  }
-
-  editar(indice:string,dados:any){
-    this.ref().child('/' + indice)
-    .update(dados)
-    .then();
-  }
-
-  async get(indice:string){
-    let dado:any;
-    await this.ref().orderByKey()
-    .equalTo(indice)
-    .once('value')
-    .then( function(snapshot){
-      if (snapshot.exists()){
-        dado = Object.values(snapshot.val())[0];
-      }
-    })
-    return dado;
+  excluir(_id:number){
+    return this.requisicao_service.del(this.url + 'excluir/' + _id);
   }
 }

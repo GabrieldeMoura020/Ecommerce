@@ -40,6 +40,9 @@ import { EstadoFormComponent } from './estado/estado-form/estado-form.component'
 import { EstadoListarComponent } from './estado/estado-listar/estado-listar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AutenticacaoComponent } from './autenticacao/autenticacao.component'
+import { NgxMaskDirective } from 'ngx-mask';
+import { NgxMaskPipe } from 'ngx-mask/lib/ngx-mask.pipe';
+import { provideNgxMask } from 'ngx-mask/lib/ngx-mask.providers';
 
 @NgModule({
   declarations: [
@@ -92,9 +95,11 @@ import { AutenticacaoComponent } from './autenticacao/autenticacao.component'
     }),
     AngularFireStorageModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,9 +19,17 @@ import { ProdutoFormComponent } from './produto/produto-formulario/produto-formu
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { FornecedorListarComponent } from './fornecedor/fornecedor-listar/fornecedor-listar.component';
 import { FornecedorFormComponent } from './fornecedor/fornecedor-form/fornecedor-form.component';
+import { GuardService } from './service/guard.service';
 
 
 const routes: Routes = [
+  
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivateChild: [GuardService]
+  },
+
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   {

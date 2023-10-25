@@ -21,7 +21,7 @@ export class CategoriaListarComponent implements OnInit {
     this.listar();
    }
 
-  excluir(key: string) {
+  excluir(key: number) {
     this.categoria_service.excluir(key).subscribe(
       () => {
         this.listar();

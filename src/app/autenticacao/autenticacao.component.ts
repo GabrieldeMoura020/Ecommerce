@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-autenticacao',
   templateUrl: './autenticacao.component.html',
-  styleUrls: ['./autenticacao.component.scss']
+  styleUrls: ['./autenticacao.component.css']
 })
 export class AutenticacaoComponent {
   public email:string = '';
