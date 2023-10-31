@@ -14,11 +14,9 @@ export class GuardService {
 
     public auth_service:AutenticacaoService,
     public router: Router
-  ) { 
-    this.isLogged();
-  }
+  ) { }
 
-  canActivateChild(
+  canActivate(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): | Observable<boolean | UrlTree>
@@ -28,23 +26,25 @@ export class GuardService {
     return this.is_logged;
   }
 
-  is_logged(){
-    let _token = sessionStorage.getItem('token');
-    if(_token == '' || _token == null || _token == undefined){
-      this.goLogin();
-    } else {
-      this.auth_service.verifyToken(_token).subscribe((_res:any) => {
-        if (_res) {
-          this.is_logged.next(true);
-        } else {
-          this.goLogin();
-        }
+  isLogged(){
+    this.auth_service.verifyToken()
+    .subscribe(
+      {
+        next: (_res:any) => {
+          if (_res){
+            this.is_logged.next(true);
+          }else{
+            this.goLogin();
+          }
+        },
+        error() => {         
+          this.is_logged.next(false);
       }
+    }
     );
-  }
 }
 
   goLogin(){
-    this.router.navigateByUrl('/autenticacao');
+    this.router.navigateByUrl('/login');
   }
 }

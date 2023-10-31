@@ -31,7 +31,7 @@ export class ProdutoFormComponent {
     public subcategoria_service:SubcategoriaService
   ) {
 
-		this.listarCategoria();
+		this.categoria_service.listar();
     
 		this.activated_route.params.subscribe((params: any) => {
 
@@ -64,9 +64,7 @@ export class ProdutoFormComponent {
     }
 		
 		if (this.indice == '') {
-			document.querySelector('#descricao')
-				?.classList.add('has-error');
-			return;
+			this.produto_service.salvar(dados);
 		}
 
 		if (this.id == 0) {

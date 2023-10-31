@@ -20,17 +20,12 @@ import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { FornecedorListarComponent } from './fornecedor/fornecedor-listar/fornecedor-listar.component';
 import { FornecedorFormComponent } from './fornecedor/fornecedor-form/fornecedor-form.component';
 import { GuardService } from './service/guard.service';
+import { AutenticacaoComponent } from './autenticacao/autenticacao.component';
 
 
 const routes: Routes = [
-  
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivateChild: [GuardService]
-  },
 
-  { path: '', component: HomeComponent },
+  { path: '', component:HomeComponent, canActivate: [GuardService]},
   { path: 'home', component: HomeComponent },
   {
     path: 'categoria',
@@ -94,6 +89,9 @@ const routes: Routes = [
       {path:'form', component:ProdutoFormComponent},
       {path:'form/:indice', component:ProdutoFormComponent}
     ]
+  },
+  {
+    path:'login',component:AutenticacaoComponent
   }
 
 ];

@@ -19,17 +19,7 @@ export class RequisicaoService {
   }
 
   post(formData:any,rota:string = ''){
-    /*
-    const httpOptions = {      
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin' : '*',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, X-CSRF-Token',
-        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE',
-        'Access-Control-Allow-Credenciais': 'true'
-      })
-    };
-    */
+ 
     const httpOptions = {      
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin' : '*',

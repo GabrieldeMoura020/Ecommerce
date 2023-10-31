@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FirebaseService } from '../firebase.service';
 import { RequisicaoService } from '../requisicao.service';
 
 @Injectable({
@@ -8,12 +7,8 @@ import { RequisicaoService } from '../requisicao.service';
 export class UsuarioService {
 
   constructor(
-    public firebase_service:FirebaseService, private requisicao_service: RequisicaoService
+    private requisicao_service:RequisicaoService
   ) { }
-
-  ref() {
-    return  this.firebase_service.ref().child('/usuario');
-  }
 
   salvar(fd:any){
     return this.requisicao_service.post(fd, 'usuario');
@@ -34,9 +29,5 @@ export class UsuarioService {
 
   load(id:number){
     return this.requisicao_service.get('/usuario/load' + id);
-  }
-
-  get(){
-    this.requisicao_service.get();
   }
 }
