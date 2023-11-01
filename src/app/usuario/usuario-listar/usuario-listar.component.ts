@@ -14,57 +14,40 @@ export class UsuarioListarComponent {
   constructor(
     public usuario_service: UsuarioService,
     public router: Router
-  ) {}
-
-  listar(){
-    this.usuario_service.listar().subscribe((_dados:any) => {
-      this.dados = _dados;
-    }
-    );
+  ) {
+    this.ngOnInit();
   }
 
   ngOnInit(): void {
-
     this.listar();
-    
-//    this.usuario_service.listar()
-//    .on('value', (snapshot: any) => {
-
-      //Limpa a variável local com os dados
-//      this.dados.splice(0, this.dados.length);
-
-      //Dados retornados do Firebase
-//      let response = snapshot.val();
-
-      //Não setar valores caso não venha nenhum registro
-//      if(response==null) return;
-
-
-//      Object.values(response).forEach((e: any, i: number) => {
-
-//        this.dados.push({
-
-//          nome: e.nome,
-//          email: e.email,
-//          senha: e.senha,
-//          indice: Object.keys(snapshot.val())[i]
-
-//        })
-
-
-
-//      })
-//    })
   }
 
-
   excluir(_id: number) {
-    return this.usuario_service.excluir(_id).subscribe(() =>{
+    return this.usuario_service.excluir(_id)
+    .subscribe(() =>{
       this.listar();
     });
   }
 
+  listar(){
+    this.usuario_service.listar()
+    .subscribe((_dados:any) => {
+      this.dados = _dados;
+      console.log(_dados);
+    }
+    );
+  }
+
   editar(key: string) {
     this.router.navigate(['usuario/formulario/' + key])   
+  }
+
+  pesquisar(){
+    let _termo = this.termo;
+    if (_termo == '') {
+      this.listar();
+      return;
+    }
+    this.usuario_service.pesquisar().subscribe();
   }
 }

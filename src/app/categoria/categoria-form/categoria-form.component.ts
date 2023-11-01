@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategoriaFormComponent {
 
-  public indice: string = '';
+  public id: number = 0;
+  public categoria: string = '';
   public descricao:string = '';
   public valor:string = '';
 
@@ -25,82 +26,32 @@ export class CategoriaFormComponent {
         //Caso seja um registro novo interromper o método
         if(params.indice == undefined) return;
 
-        this.categoria_service.
-        ref().child('/' + params.indice).on('value', (snapshot: any) => {
-
-          let dado:any = snapshot.val();
-          this.indice = params.indice;
-          this.descricao = dado.descricao;
-          this.valor = dado.valor;
-        })
-      })
-
+        this.categoria_service.load(params.indice)
+        .subscribe((_dado: any) => {
+          this.id = _dado.id;
+          this.descricao = _dado.descricao;
+          this.valor = _dado.valor;
+        });
+      });
   }
 
   salvar() {
 
-    let validacoes_campos = this.validar_campos(); //Valida todos os campos do formulário
+    if(this.categoria == '') {
 
-    if(this.indice == '') {
-   
-      
-      if(validacoes_campos.get("descricao_valido") == true && validacoes_campos.get("valor_valido") == true) {
-
-        this.categoria_service.salvar({
-
-        descricao: this.descricao,
-        valor: this.valor
-        })
-
-        alert("Produto cadastrado")
-
-        this.descricao = '';
-        this.valor = '';
-
-      }
+      document.querySelector('#categoria')?.classList.add('has-error');
+      return;
     }
 
-    else {
+    let dados = {
+      categoria: this.categoria
+    };
 
-
-      if(validacoes_campos.get("descricao_valido") == true && validacoes_campos.get("valor_valido") == true) {
-
-        this.categoria_service.editar(this.indice, {descricao: this.descricao, valor: this.valor})
-
-        alert("Alterações salvas")
-      }
+    if (this.id == 0) {
+      this.categoria_service.salvar(dados).subscribe();
+      this.categoria_service.listar();
+    } else {
+      this.categoria_service.editar(dados, this.id).subscribe();
     }
-  }
-
-  validar_campos() {
-
-    let validacoes = new Map();
-
-    if(this.descricao == "") {
-      document.querySelector("#descricao")?.classList.add('has-error');
-      validacoes.set("descricao_valido", false);
-    }
-
-    else {
-      document.querySelector("#descricao")?.classList.remove('has-error');
-      validacoes.set("descricao_valido", true);
-
-    }
-
-
-    if(this.valor == "") {
-      document.querySelector("#valor")?.classList.add('has-error');
-      validacoes.set("valor_valido", false);
-    }
-
-
-    else {
-      document.querySelector("#valor")?.classList.remove('has-error');
-      validacoes.set("valor_valido", true);
-
-    }
-
-    return validacoes;
-  }
-  
+  } 
 }

@@ -14,16 +14,19 @@ export class GuardService {
 
     public auth_service:AutenticacaoService,
     public router: Router
-  ) { }
+  ) { 
+    this.isLogged();
+  }
 
   canActivate(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): | Observable<boolean | UrlTree>
+  ): 
+  | Observable<boolean | UrlTree>
   | Promise<boolean | UrlTree>
   | boolean
-  | UrlTree{
-    return this.is_logged;
+  | UrlTree {
+      return this.is_logged; 
   }
 
   isLogged(){
@@ -33,18 +36,21 @@ export class GuardService {
         next: (_res:any) => {
           if (_res){
             this.is_logged.next(true);
-          }else{
-            this.goLogin();
           }
         },
         error() => {         
-          this.is_logged.next(false);
+          this.goError();
+        }
       }
-    }
     );
-}
+  }
 
   goLogin(){
+    this.is_logged.next(false);
     this.router.navigateByUrl('/login');
+  }
+
+  goError(){
+    
   }
 }
